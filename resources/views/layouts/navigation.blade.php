@@ -17,13 +17,13 @@
                     </x-nav-link>
                 </div>
 
-                @role('admin')
+                {{-- @role('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Admin') }}
                     </x-nav-link>
                 </div>
-                @endrole
+                @endrole --}}
             </div>
 
             <!-- Settings Dropdown -->
