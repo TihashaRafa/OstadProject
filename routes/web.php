@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +31,8 @@ Route::get('/dashboard', function () {
 //     return view('admin.index');
 // })->middleware(['auth', 'role:admin'])->name('admin.index');
 
+Route::get('/admin/login', [LoginController::class, 'login'])->name('admin.login');
+Route::get('/admin/register', [RegisterController::class, 'login'])->name('admin.register');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function() {
     Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -36,8 +40,6 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('/roles', PermissionController::class);
  
 });
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
