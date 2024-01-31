@@ -80,11 +80,11 @@
                                                     <div class="flex items-center space-x-4">
                                                         
                                                         <a
-                                                            href=""
+                                                            href="{{ route('admin.category.edit', $item->id) }}"
                                                             class="px-3 py-2 rounded text-gray-100 bg-green-400 hover:scale-105 transition focus:outline-none focus:ring focus:border-blue-300">
                                                             Edit
                                                         </a>
-                                                        <form action="" method="POST">
+                                                        <form action="{{ route('admin.category.delete', $item->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button

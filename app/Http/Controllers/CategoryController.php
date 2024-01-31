@@ -25,14 +25,8 @@ class CategoryController extends Controller
             'user_id' => $request->user_id,
         ]);
 
-        return redirect()->back()->with('success', 'Category Created Successfully');    
+        return redirect()->route('admin.category.index');    
     }
-
-
-    // public function show($id){
-    //     $category = Category::findOrFail($id);
-    //     return view('pages.show', compact('category'));
-    // }
 
     public function edit($id)
     {
@@ -40,44 +34,27 @@ class CategoryController extends Controller
         return view('backend.category.edit', compact('category'));
     }
 
-    // public function update(Request $request, $id){
+    public function update(Request $request, $id){
 
-    //     $request->validate([
-    //         'title' => 'required',
-    //         'description' => 'nullable|string',
-    //         'category' => 'required|string',
-    //         'tags' => 'nullable|array',
-    //         'status' => 'required|string',
-    //         'featured_image' => 'nullable|image',
-    //     ]);
+        $request->validate([
+            'name' => 'required',
 
-    //     //Image Upload
-    //     if($request->hasFile('featured_image')){
-    //         $image = $request->file('featured_image');
-    //         $fileNameToStore = 'post_image_'.md5((uniqid())).time().'.'.$image->getClientOriginalExtension();
-    //         $image->move(public_path('images'), $fileNameToStore);
-    //     }
+        ]);
 
-    //     //Post Save
-    //     $post = Post::findOrFail($id);
-    //     $post->update([
-    //         'title' => $request->title,
-    //         'description' => $request->description,
-    //         'category' => $request->category,
-    //         'tags' => $request->tags,
-    //         'status' => $request->status,
-    //         'featured_image' =>  $request->hasFile('featured_image') ? $fileNameToStore : $post->featured_image,
-    //     ]);
-
-    //     return redirect()->back()->with('success', 'Post updated Successfully');    
-    // }
+        //Post Save
+        $category = Category::findOrFail($id);
+        $category->update([
+            'name' => $request->name,
+            'user_id' => $request->user_id,
+        ]);
+        return redirect()->route('admin.category.index');    
+    }
 
 
-
-    // public function destroy($id){
-    //     $post = Post::findOrFail($id);
-    //     $post->delete();
-    //     return redirect()->back()->with('success', 'Post Deleted Successfully');
-    // }
+    public function destroy($id){
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect()->back()->with('success', 'Post Deleted Successfully');
+    }
 }
 
