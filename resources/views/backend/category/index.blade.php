@@ -71,15 +71,32 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach ($category as $item)
                                             <tr class="odd">
                                                 <td class="dtr-control sorting_1" tabindex="0">Id</td>
-                                                <td>Name</td>
-                                                <td>User</td>
-                                                <td>Action</td>
-
+                                                <td>{{  $item->name }}</td>
+                                                <td>{{  $item->user_id }}</td>
+                                                <td class="px-6 py-4">
+                                                    <div class="flex items-center space-x-4">
+                                                        
+                                                        <a
+                                                            href=""
+                                                            class="px-3 py-2 rounded text-gray-100 bg-green-400 hover:scale-105 transition focus:outline-none focus:ring focus:border-blue-300">
+                                                            Edit
+                                                        </a>
+                                                        <form action="" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button
+                                                            class="px-3 py-2 rounded text-gray-100 bg-red-400 hover:scale-105 transition  focus:outline-none focus:ring focus:border-red-500">
+                                                            Delete
+                                                        </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                                @endforeach
                                         </tbody>
-
+                                     
                                     </table>
                                 </div>
                             </div>
